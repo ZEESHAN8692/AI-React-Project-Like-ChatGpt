@@ -1,10 +1,32 @@
+import { useEffect, useState } from "react";
 import "./App.css";
+import { main } from "./geminiApi/GeminiApi";
 
 function App() {
+  const [apiResponse, setApiResponse] = useState("");
+  const handhleSubmit = async () => {
+    const response = await main();
+    setApiResponse(response);
+  };
+  useEffect(() => {
+    handhleSubmit();
+  }, []);
+
   return (
     <>
       <div className="grid grid-cols-5 grid-rows-5 ">
-        <div className="row-span-5 bg-black  text-white p-5">2</div>
+        <div className="row-span-5 bg-black  text-[#898D95] p-5 font-bold ">
+          <br />
+          <br />
+          <ul>
+            <li>Hello Zeeshan</li>
+            <li>Hello Zeeshan</li>
+            <li>Hello Zeeshan</li>
+            <li>Hello Zeeshan</li>
+            <li>Hello Zeeshan</li>
+          </ul>
+        </div>
+
         <div className="col-span-4 row-span-5 bg-[#212121] text-white p-5 ">
           <div className="flex justify-between items-center">
             <div>
@@ -26,39 +48,16 @@ function App() {
           <br />
           <br />
 
-          <div className="text-center m-auto p-5 bg-gray-800 rounded-[10px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            provident quisquam dolorem recusandae dolores possimus voluptas
-            blanditiis exercitationem maxime. Iste adipisci voluptatum eligendi
-            id fuga! Voluptatibus sunt dicta nulla magnam. Tempore ut quidem quo
-            temporibus, id aliquam dolore! Amet harum, corporis magnam excepturi
-            iure repellendus explicabo facere, quae rem sapiente quod tempora
-            sed dolorum fugiat voluptatibus? Similique ex cumque exercitationem.
-            Doloribus quia cumque dicta exercitationem, incidunt dolorem
-            blanditiis iure quos itaque nam aperiam animi nulla! Doloribus
-            obcaecati commodi quo, omnis quasi ipsa eos molestiae? Nihil fugiat
-            dolor numquam laborum enim! Ullam praesentium fugit vero molestias
-            quas, nisi reiciendis quia corrupti aut eligendi! Quasi dolores
-            accusantium corrupti sunt quisquam ad vero. Aut numquam provident
-            iusto blanditiis repudiandae nemo. Id, facilis sequi? Commodi,
-            incidunt minima odit, soluta non libero officia tenetur aliquam et
-            quo possimus. Sed nisi iste natus nostrum ut quam hic eius, porro,
-            nihil, harum praesentium. Obcaecati aliquid recusandae quaerat. Quam
-            iste animi id rerum voluptatum ducimus nemo placeat soluta vitae
-            vero tenetur rem consectetur porro explicabo, cum voluptates, quos
-            accusantium enim, est iure eos quia obcaecati voluptas. Dolor,
-            repellendus. Tenetur sapiente perspiciatis perferendis quae numquam
-            nisi, at possimus, distinctio suscipit eaque cum iusto dolorem
-            tempora consectetur eius aut asperiores. Provident officia nisi
-            aliquid tenetur reiciendis praesentium repellendus dolor quasi. Quam
-            quis, labore deserunt ratione aut distinctio reiciendis nesciunt
-            voluptatibus perspiciatis commodi repellendus optio temporibus sequi
-            repudiandae nobis excepturi, aspernatur eaque quibusdam consequatur
-            laboriosam facere incidunt! Doloribus, fuga! Iure, molestias? Amet
-            quidem similique perferendis nemo corporis, libero id ipsam, ex
-          </div>
+          {apiResponse.length > 0 ? (
+            <div className="text-center m-auto p-5 bg-gray-600 rounded-[10px]">
+              {apiResponse}
+            </div>
+          ) : (
+            ""
+          )}
+
           <br />
-          <div className="w-[70%] m-auto border border-[#525252] p-3.5 rounded-2xl">
+          <div className="w-[80%] m-auto border border-[#525252] p-3.5 rounded-2xl">
             <input
               type="text"
               placeholder="Ask Gemini"
@@ -66,12 +65,31 @@ function App() {
             />
             <br />
             <br />
-            <div className="flex justify-between items-center">
-              <div>
-                <div className="text-2xl">+</div>
+            <form action="">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <div className="p-1 bg-gray-600 rounded-full w-[40px] h-[40px] flex justify-center items-center">
+                      <img src="plus.png" alt="" className="w-[20px]" />
+                    </div>
+                    <div>
+                      <p>Deep Search</p>
+                    </div>
+
+                    <div>
+                      <p>Canvas</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <button className="cursor-pointer">
+                    <div className="p-1 bg-gray-600 rounded-full w-[40px] h-[40px] flex justify-center items-center ">
+                      <img src="submit.png" alt="" className="w-[24px] " />
+                    </div>
+                  </button>
+                </div>
               </div>
-              <div></div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

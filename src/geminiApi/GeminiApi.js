@@ -4,10 +4,10 @@ import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-export async function main() {
+export async function main(promt) {
   const response = await ai.models.generateContent({
     model: "gemini-2.0-flash",
-    contents: "what is react",
+    contents: promt,
   });
   return response.text;
   //   console.log(response.text);
